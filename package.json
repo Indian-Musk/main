@@ -1,22 +1,18 @@
 {
   "name": "product",
   "version": "1.0.0",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "install": "npm rebuild sqlite3 --build-from-source"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "body-parser": "^2.2.0",
-    "connect-sqlite3": "^0.9.15",
-    "express": "^5.1.0",
-    "express-session": "^1.18.1",
-    "npm-git-install": "^0.3.0",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "express": "^4.18.2",
+    "bcryptjs": "^2.4.3",
+    "express-session": "^1.18.0",
+    "connect-sqlite3": "^0.9.13"
   },
-  "description": ""
+  "engines": {
+    "node": "18.x"
+  }
 }
