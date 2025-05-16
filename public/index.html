@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICloude | Next-Gen Cloud Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+
+
+/* Add new styles */
+    .auth-forms {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            z-index: 1001;
+            width: 90%;
+            max-width: 400px;
+        }
+
+       .auth-active .auth-overlay {
+            display: block;
+        }
+
+
+ .error-message {
+            color: #ff4444;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+
+ .cancel-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #ff4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cancel-btn:hover {
+            transform: scale(1.05);
+            background: #cc0000;
+        }
+
+        .admin-dashboard {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+.auth-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .user-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(45deg, #0f3460, #1a1a2e);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .features {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            color: #1a1a2e;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f3460;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">AICloude</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <span id="authLinks">
+                    <a href="#" onclick="showAuthForm('login')">Login</a>
+                    <a href="#" onclick="showAuthForm('register')">Register</a>
+                </span>
+                <span id="userMenu" style="display: none;">
+                    <a href="#" id="usernameDisplay"></a>
+                    <a href="#" onclick="logout()">Logout</a>
+                    <a href="/admin" id="adminLink" style="display: none;">Admin</a>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+  <!-- Auth Overlay and Forms -->
+    <div class="auth-overlay" onclick="hideAuthForms()"></div>
+    <div class="auth-forms" id="loginForm">
+        <h2>Login</h2>
+        <div class="error-message" id="loginError"></div>
+        <form onsubmit="event.preventDefault(); login();">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Login</button>
+                <button type="button" class="cancel-btn" onclick="hideAuthForms()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+   <div class="auth-forms" id="registerForm">
+        <h2>Register</h2>
+        <div class="error-message" id="registerError"></div>
+        <form onsubmit="event.preventDefault(); register();">
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Register</button>
+                <button type="button" class="cancel-btn" onclick="hideAuthForms()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Business with AI-Powered Cloud Solutions</h1>
+            <p>Leverage cutting-edge cloud technology enhanced with artificial intelligence for unparalleled performance and scalability</p>
+            <a href="#contact" class="cta-button">Start Your Free Trial</a>
+        </div>
+    </section>
+
+
+
+
+    <section id="features" class="features">
+        <div class="grid">
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>AI-Optimized Infrastructure</h3>
+                <p>Self-learning systems that automatically optimize resource allocation and workload distribution</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Military-Grade Security</h3>
+                <p>Advanced threat detection powered by machine learning algorithms</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Lightning Fast Deployment</h3>
+                <p>Get your AI models running in production within minutes</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="features">
+        <div class="grid">
+            <div class="feature-card">
+                <i class="fas fa-cloud"></i>
+                <h3>Smart Cloud Storage</h3>
+                <p>AI-managed storage with predictive capacity planning</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>AIaaS Platform</h3>
+                <p>Pre-built AI models for vision, NLP, and predictive analytics</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-database"></i>
+                <h3>Auto-Scaling Databases</h3>
+                <p>Self-optimizing databases with real-time query analysis</p>
+            </div>
+        </div>
+    </section>
+
+   <section id="contact" class="contact-section">
+        <form class="contact-form">
+            <h2>Get Started Today</h2>
+            <div id="formError" class="error-message" style="display: none;"></div>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+ <script>
+        // Auth Functions
+        function showAuthForm(type) {
+            document.getElementById('loginForm').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = type === 'register' ? 'block' : 'none';
+            document.body.classList.add('auth-active');
+        }
+
+        function hideAuthForms() {
+            document.body.classList.remove('auth-active');
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hideAuthForms();
+        });
+
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/user');
+                const data = await response.json();
+                
+                if (data.loggedIn) {
+                    document.getElementById('authLinks').style.display = 'none';
+                    document.getElementById('userMenu').style.display = 'flex';
+                    document.getElementById('usernameDisplay').textContent = data.user.username;
+                    document.getElementById('adminLink').style.display = data.user.isAdmin ? 'inline-block' : 'none';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+            }
+        }
+
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorElement = document.getElementById('loginError');
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    errorElement.textContent = 'Invalid username or password';
+                    errorElement.style.display = 'block';
+                }
+            } catch (error) {
+                errorElement.textContent = 'Login failed - please try again';
+                errorElement.style.display = 'block';
+            }
+        }
+
+        async function register() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const errorElement = document.getElementById('registerError');
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    alert('Registration successful! Please login.');
+                    hideAuthForms();
+                } else {
+                    errorElement.textContent = 'Username already exists';
+                    errorElement.style.display = 'block';
+                }
+            } catch (error) {
+                errorElement.textContent = 'Registration failed';
+                errorElement.style.display = 'block';
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch('/logout', { method: 'POST' });
+                location.reload();
+            } catch (error) {
+                console.error('Logout failed:', error);
+            }
+        }
+
+        checkAuth();
+    </script>
+    <footer>
+        <p>&copy; 2023 CloudVerse AI. All rights reserved.</p>
+    </footer>
+</body>
+</html>
